@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        client.getJobs("java",1)
+        client.getJobs("java", 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
+                .subscribe {
                     val adapter = ItemListAdapter(items = it.data) { itemName ->
                         val intent = Intent(this, DetailActivity::class.java)
                         intent.putExtra("itemName", itemName)
