@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Company(
-        @SerializedName("name")             val name:           String,
-        @SerializedName("address_prefix")   val address_prefix: String,
-        @SerializedName("address_suffix")   val address_suffix: String,
-        @SerializedName("avatar")           val avatar:         Avatar)
+        @SerializedName("name") val name: String,
+        @SerializedName("address_prefix") val address_prefix: String,
+        @SerializedName("address_suffix") val address_suffix: String,
+        @SerializedName("avatar") val avatar: Avatar)

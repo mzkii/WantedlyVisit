@@ -13,14 +13,14 @@ import retrofit2.http.Query
 class WantedlyVisitClient {
     private val baseURL = "https://www.wantedly.com/api/v1/"
 
-    fun getJobs(keyword :String,page :Int): Observable<Jobs>{
+    fun getJobs(keyword: String, page: Int): Observable<Jobs> {
         val retrofit = Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val api = retrofit.create(WantedlyVisitAPI::class.java)
-        return api.getJobs(keyword,page)
+        return api.getJobs(keyword, page)
     }
 
     interface WantedlyVisitAPI {
