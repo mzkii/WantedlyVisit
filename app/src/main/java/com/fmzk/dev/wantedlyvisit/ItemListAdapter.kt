@@ -12,7 +12,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotterknife.bindView
 
-class ItemListAdapter(private val items: List<JobDetail>, private val itemClick: (String) -> Unit) :
+class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
         RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,7 +40,7 @@ class ItemListAdapter(private val items: List<JobDetail>, private val itemClick:
             this.lookingFor.text = jobDetail.looking_for
 
             Glide.with(jobImage.context)
-                    .load(jobDetail.image.original)
+                    .load(jobDetail.image.i_304_124_x2)
                     .placeholder(android.R.drawable.ic_delete)
                     .error(android.R.drawable.ic_delete)
                     .dontAnimate()
