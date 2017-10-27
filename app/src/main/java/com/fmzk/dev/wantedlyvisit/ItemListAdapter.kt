@@ -11,6 +11,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotterknife.bindView
+import android.text.SpannableString
+import com.by_syk.lib.texttag.TextTag.POS_START
+import android.R.attr.tag
+import android.graphics.Color
+import com.by_syk.lib.texttag.TextTag
+
 
 class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
         RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
@@ -33,19 +39,37 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
         private val company: TextView by bindView(R.id.company)
         private val lookingFor: TextView by bindView(R.id.looking_for)
         private val jobImage: ImageView by bindView(R.id.job_image)
+        private val companyIcon: ImageView by bindView(R.id.company_icon)
 
         fun setUp(jobDetail: JobDetail) {
             this.jobTitle.text = jobDetail.title
             this.company.text = jobDetail.company.name
             this.lookingFor.text = jobDetail.looking_for
 
+            val tt = TextTag.Builder()
+                    .text("")
+                    .tag(" " + jobDetail.looking_for + " ")
+                    .color(Color.WHITE)
+                    .bgColor(Color.rgb(25,173,194))
+                    .sizeRatio(1.0f)
+                    .pos(TextTag.POS_START)
+                    .build()
+            val ss = tt.render()
+
+            lookingFor.text = ss
+
             Glide.with(jobImage.context)
                     .load(jobDetail.image.i_304_124_x2)
-                    .placeholder(android.R.drawable.ic_delete)
                     .error(android.R.drawable.ic_delete)
-                    .dontAnimate()
                     .into(jobImage)
 
+            if(jobDetail.company.avatar != null){
+                Glide.with(companyIcon.context)
+                        .load(jobDetail.company.avatar.original)
+                        .error(android.R.drawable.ic_delete)
+                        .into(companyIcon)
+            }
+            this.itemView.setOnClickListener { itemClick(jobDetail.title) }
             this.itemView.setOnClickListener { itemClick(jobDetail.title) }
         }
     }
