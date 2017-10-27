@@ -11,6 +11,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotterknife.bindView
+import android.text.SpannableString
+import com.by_syk.lib.texttag.TextTag.POS_START
+import android.R.attr.tag
+import android.graphics.Color
+import com.by_syk.lib.texttag.TextTag
+
 
 class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
         RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
@@ -39,6 +45,19 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
             this.jobTitle.text = jobDetail.title
             this.company.text = jobDetail.company.name
             this.lookingFor.text = jobDetail.looking_for
+
+            val tt = TextTag.Builder()
+                    .text("")
+                    .tag("  " + jobDetail.looking_for + "  ")
+                    .bgColor(-0xde690d)
+                    .color(Color.WHITE)
+                    .sizeRatio(1.0f)
+                    .pos(TextTag.POS_START)
+                    .build()
+            val ss = tt.render()
+
+            lookingFor.text = ss
+
 
             Glide.with(jobImage.context)
                     .load(jobDetail.image.i_304_124_x2)
