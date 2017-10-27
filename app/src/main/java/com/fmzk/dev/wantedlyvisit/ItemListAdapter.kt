@@ -48,7 +48,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
 
             val tt = TextTag.Builder()
                     .text("")
-                    .tag("  " + jobDetail.looking_for + "  ")
+                    .tag(" " + jobDetail.looking_for + " ")
                     .bgColor(-0xde690d)
                     .color(Color.WHITE)
                     .sizeRatio(1.0f)
@@ -58,12 +58,9 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
 
             lookingFor.text = ss
 
-
             Glide.with(jobImage.context)
                     .load(jobDetail.image.i_304_124_x2)
-                    .placeholder(android.R.drawable.ic_delete)
                     .error(android.R.drawable.ic_delete)
-                    .dontAnimate()
                     .into(jobImage)
 
             if(jobDetail.company.avatar != null){
@@ -72,6 +69,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
                         .error(android.R.drawable.ic_delete)
                         .into(companyIcon)
             }
+            this.itemView.setOnClickListener { itemClick(jobDetail.title) }
             this.itemView.setOnClickListener { itemClick(jobDetail.title) }
         }
     }
