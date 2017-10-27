@@ -33,6 +33,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
         private val company: TextView by bindView(R.id.company)
         private val lookingFor: TextView by bindView(R.id.looking_for)
         private val jobImage: ImageView by bindView(R.id.job_image)
+        private val companyIcon: ImageView by bindView(R.id.company_icon)
 
         fun setUp(jobDetail: JobDetail) {
             this.jobTitle.text = jobDetail.title
@@ -46,6 +47,12 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
                     .dontAnimate()
                     .into(jobImage)
 
+            if(jobDetail.company.avatar != null){
+                Glide.with(companyIcon.context)
+                        .load(jobDetail.company.avatar.original)
+                        .error(android.R.drawable.ic_delete)
+                        .into(companyIcon)
+            }
             this.itemView.setOnClickListener { itemClick(jobDetail.title) }
         }
     }
