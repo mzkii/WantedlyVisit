@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     override fun onLoadMore() {
                         currentPage++
+                        if( currentPage > totalPages){
+                            recyclerView.loadMoreComplete()
+                            adapter?.notifyDataSetChanged()
+                            return
+                        }
                         client.getJobs(keyword, currentPage)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
