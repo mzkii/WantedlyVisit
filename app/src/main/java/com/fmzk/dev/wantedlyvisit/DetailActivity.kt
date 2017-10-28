@@ -28,7 +28,7 @@ class DetailActivity : AppCompatActivity() {
 
         if (data.jobDetail.image != null) {
             Glide.with(backdrop.context)
-                    .load(data.jobDetail.image.i_304_124_x2)
+                    .load(data.jobDetail.image.i_320_131_x2)
                     .error(android.R.drawable.ic_delete)
                     .into(backdrop)
         }

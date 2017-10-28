@@ -43,7 +43,8 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
             this.company.text = jobDetail.company.name
             this.companyUrl.text = jobDetail.company.url
             this.lookingFor.text = jobDetail.looking_for
-            this.description.text = jobDetail.description
+            this.description.text = jobDetail.description.replace(oldChar = '\r', newChar = ' ', ignoreCase = false)
+            jobDetail.description.replace(oldChar = '\n', newChar = ' ', ignoreCase = false)
             this.lookingFor.text = jobDetail.looking_for
 
             if (jobDetail.image != null) {
