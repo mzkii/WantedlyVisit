@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import kotterknife.bindView
 
 import com.google.gson.Gson
+import com.sackcentury.shinebuttonlib.ShineButton
 
 
 class DetailActivity : AppCompatActivity() {
@@ -32,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
     private val bookmark: Button by bindView(R.id.button_bookmark)
     private val candidate: Button by bindView(R.id.button_candidate)
     private val share: FloatingActionButton by bindView(R.id.fab_share)
+    private val liked: ShineButton by bindView(R.id.liked)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +84,12 @@ class DetailActivity : AppCompatActivity() {
 
         share.setOnClickListener { view ->
             Snackbar.make(view, "「SNS共有」が押されました", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show()
+        }
+
+        liked.setOnClickListener { view ->
+            Snackbar.make(view, "「応援する」が押されました", Snackbar.LENGTH_LONG)
                     .setAction("Action", null)
                     .show()
         }
