@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class Company(
+        @SerializedName("payroll_number") val payroll_number: String,
+        @SerializedName("founded_on") val founded_on: String,
+        @SerializedName("founder") val founder: String,
         @SerializedName("name") val name: String,
         @SerializedName("url") val url: String,
         @SerializedName("address_prefix") val address_prefix: String,

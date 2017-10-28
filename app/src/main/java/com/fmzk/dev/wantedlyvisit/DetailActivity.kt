@@ -15,6 +15,13 @@ import com.google.gson.Gson
 
 
 class DetailActivity : AppCompatActivity() {
+
+    private val founder: TextView by bindView(R.id.detail_founder)
+    private val foundedOn: TextView by bindView(R.id.detail_founded_on)
+    private val payrollNumber: TextView by bindView(R.id.detail_payroll_number)
+    private val address: TextView by bindView(R.id.detail_address)
+    private val url: TextView by bindView(R.id.detail_url)
+
     private val companyUrl: TextView by bindView(R.id.company_url)
     private val author: TextView by bindView(R.id.author)
     private val description: TextView by bindView(R.id.detail_description)
@@ -33,6 +40,14 @@ class DetailActivity : AppCompatActivity() {
         val data = Gson().fromJson<JobDetailHolder>(
                 intent.getStringExtra("json_data"),
                 JobDetailHolder::class.java!!)
+
+        founder.text = data.jobDetail.company.founder
+        foundedOn.text = data.jobDetail.company.founded_on
+        payrollNumber.text = data.jobDetail.company.payroll_number
+        address.text = data.jobDetail.company.address_prefix + " " +
+                data.jobDetail.company.address_suffix
+        url.text = data.jobDetail.company.url
+
         author.text = data.jobDetail.title
         description.text = data.jobDetail.description
         lookingFor.text = data.jobDetail.looking_for
