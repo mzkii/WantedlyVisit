@@ -11,8 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotterknife.bindView
-import android.graphics.Color
-import com.by_syk.lib.texttag.TextTag
 
 
 class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
@@ -46,15 +44,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
             this.companyUrl.text = jobDetail.company.url
             this.lookingFor.text = jobDetail.looking_for
             this.description.text = jobDetail.description
-            this.lookingFor.text = TextTag.Builder()
-                    .text("")
-                    .tag(" " + jobDetail.looking_for + " ")
-                    .color(Color.WHITE)
-                    .bgColor(Color.rgb(25, 173, 194))
-                    .sizeRatio(1.0f)
-                    .pos(TextTag.POS_START)
-                    .build()
-                    .render()
+            this.lookingFor.text = jobDetail.looking_for
 
             if (jobDetail.image != null) {
                 Glide.with(jobImage.context)

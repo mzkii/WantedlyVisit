@@ -41,7 +41,6 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
-    compile 'com.github.by-syk:TextTag:1.1.0'
 }
 
 repositories {
