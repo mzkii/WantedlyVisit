@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import kotterknife.bindView
 
 
-class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
+class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (JobDetail) -> Unit) :
         RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +29,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
         return this.items.count()
     }
 
-    class ViewHolder(view: View, val itemClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (JobDetail) -> Unit) : RecyclerView.ViewHolder(view) {
         private val title: TextView by bindView(R.id.title)
         private val company: TextView by bindView(R.id.company)
         private val companyUrl: TextView by bindView(R.id.company_url)
@@ -60,7 +60,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
                         .into(companyIcon)
             }
 
-            this.itemView.setOnClickListener { itemClick(jobDetail.title) }
+            this.itemView.setOnClickListener { itemClick(jobDetail) }
         }
     }
 }

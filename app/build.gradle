@@ -52,3 +52,4 @@ repositories {
         url 'https://jitpack.io'
     }
 }
+apply plugin: 'kotlin-android-extensions'

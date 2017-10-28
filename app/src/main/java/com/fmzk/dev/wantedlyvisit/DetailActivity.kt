@@ -1,21 +1,36 @@
 package com.fmzk.dev.wantedlyvisit
 
-/**
- * Created by fmzk on 2017/10/24.
- */
-import android.app.Activity
+
+
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotterknife.bindView
 
-class DetailActivity : Activity() {
-    private val jobTitle: TextView by bindView(R.id.job_title)
+import com.google.gson.Gson
+
+
+
+
+class DetailActivity : AppCompatActivity() {
+    private val author: TextView by bindView(R.id.author)
+    private val backdrop: ImageView by bindView(R.id.backdrop)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        val data = Gson().fromJson<JobDetailHolder>(
+                intent.getStringExtra("json_data"),
+                JobDetailHolder::class.java!!)
+        author.text = data.jobDetail.title
 
-        this.title = "DetailActivity"
-        this.jobTitle.text = intent.getStringExtra("itemName")
+        if (data.jobDetail.image != null) {
+            Glide.with(backdrop.context)
+                    .load(data.jobDetail.image.i_304_124_x2)
+                    .error(android.R.drawable.ic_delete)
+                    .into(backdrop)
+        }
     }
 }
