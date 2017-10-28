@@ -21,8 +21,8 @@ class DetailActivity : AppCompatActivity() {
     private val payrollNumber: TextView by bindView(R.id.detail_payroll_number)
     private val address: TextView by bindView(R.id.detail_address)
     private val url: TextView by bindView(R.id.detail_url)
+    private val pageView: TextView by bindView(R.id.page_view)
 
-    private val companyUrl: TextView by bindView(R.id.company_url)
     private val author: TextView by bindView(R.id.author)
     private val description: TextView by bindView(R.id.detail_description)
     private val company: TextView by bindView(R.id.detail_company)
@@ -41,6 +41,7 @@ class DetailActivity : AppCompatActivity() {
                 intent.getStringExtra("json_data"),
                 JobDetailHolder::class.java!!)
 
+        pageView.text = data.jobDetail.page_view + " " + "views"
         founder.text = data.jobDetail.company.founder
         foundedOn.text = data.jobDetail.company.founded_on
         payrollNumber.text = data.jobDetail.company.payroll_number
@@ -52,7 +53,6 @@ class DetailActivity : AppCompatActivity() {
         description.text = data.jobDetail.description
         lookingFor.text = data.jobDetail.looking_for
         company.text = data.jobDetail.company.name
-        companyUrl.text = data.jobDetail.company.url
 
         if (data.jobDetail.image != null) {
             Glide.with(backdrop.context)

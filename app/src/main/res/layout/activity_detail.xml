@@ -105,8 +105,8 @@
 
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/company_icon"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="3dp"
@@ -126,6 +126,7 @@
                                 android:id="@+id/detail_company"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
                                 android:autoText="false"
                                 android:text="Wantedly, Inc."
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -134,16 +135,15 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/company_url"
+                                android:id="@+id/page_view"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:autoLink="web"
+                                android:layout_marginTop="3dp"
                                 android:autoText="false"
-                                android:text="https://wantedlyinc.com"
+                                android:text="3014 views"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                android:textColor="#808080"
-                                android:textColorLink="@color/colorPrimary"
-                                android:textSize="12sp"
+                                android:textColor="#606060"
+                                android:textSize="13sp"
                                 android:textStyle="normal" />
 
                         </LinearLayout>
