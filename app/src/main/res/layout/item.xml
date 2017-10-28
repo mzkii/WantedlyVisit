@@ -33,23 +33,12 @@
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:alpha=".48"
+                android:layout_alignTop="@+id/looking_for"
+                android:layout_marginTop="10dp"
+                android:alpha=".45"
                 android:background="#000" />
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/company_icon"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="13dp"
-                android:layout_marginTop="15dp"
-                android:background="#FFF"
-                android:scaleType="fitCenter"
-                app:riv_border_color="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/title"
@@ -58,9 +47,9 @@
                 android:layout_above="@+id/description"
                 android:layout_alignParentStart="true"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="7dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="8dp"
+                android:paddingTop="6dp"
                 android:singleLine="false"
                 android:text="〔マッハバイト〕リブセンスの主力メディアをひっぱるデザイナー募集"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -77,48 +66,15 @@
                 android:ellipsize="middle"
                 android:enabled="false"
                 android:gravity="top|left"
-                android:maxLines="3"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="7dp"
+                android:maxLines="2"
+                android:paddingBottom="8dp"
+                android:paddingLeft="11dp"
+                android:paddingRight="8dp"
+                android:paddingTop="6dp"
                 android:text="クリエイティブ力でメディアを成長させるデザイナーを募集します。もっと満足度の高いUI設計をしたい、という強い思いから募集を開始しました。運営サービスの社会的意義を理解した上で、クリエイティブ力による課題解決を行っていただきます！■具体的な業務イメージ"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#ffffff"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/company_url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/company_icon"
-                android:layout_toStartOf="@+id/company_icon"
-                android:autoLink="web"
-                android:gravity="left"
-                android:paddingBottom="2dp"
-                android:paddingLeft="4dp"
-                android:paddingRight="10dp"
-                android:text="http://recruit.livesense.co.jp/"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#fff"
-                android:textColorLink="#FFF"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/company_icon"
-                android:layout_toStartOf="@+id/company_icon"
-                android:paddingLeft="4dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:text="株式会社リブセンス"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <TextView

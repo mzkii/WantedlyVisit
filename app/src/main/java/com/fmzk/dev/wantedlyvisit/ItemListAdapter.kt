@@ -31,20 +31,14 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
 
     class ViewHolder(view: View, val itemClick: (JobDetail) -> Unit) : RecyclerView.ViewHolder(view) {
         private val title: TextView by bindView(R.id.title)
-        private val company: TextView by bindView(R.id.company)
-        private val companyUrl: TextView by bindView(R.id.company_url)
         private val lookingFor: TextView by bindView(R.id.looking_for)
         private val description: TextView by bindView(R.id.description)
         private val jobImage: ImageView by bindView(R.id.job_image)
-        private val companyIcon: ImageView by bindView(R.id.company_icon)
 
         fun setUp(jobDetail: JobDetail) {
             this.title.text = jobDetail.title
-            this.company.text = jobDetail.company.name
-            this.companyUrl.text = jobDetail.company.url
             this.lookingFor.text = jobDetail.looking_for
-            this.description.text = jobDetail.description.replace(oldChar = '\r', newChar = ' ', ignoreCase = false)
-            jobDetail.description.replace(oldChar = '\n', newChar = ' ', ignoreCase = false)
+            this.description.text = jobDetail.description
             this.lookingFor.text = jobDetail.looking_for
 
             if (jobDetail.image != null) {
@@ -52,13 +46,6 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
                         .load(jobDetail.image.i_304_124_x2)
                         .error(android.R.drawable.ic_delete)
                         .into(jobImage)
-            }
-
-            if (jobDetail.company.avatar != null) {
-                Glide.with(companyIcon.context)
-                        .load(jobDetail.company.avatar.original)
-                        .error(android.R.drawable.ic_delete)
-                        .into(companyIcon)
             }
 
             this.itemView.setOnClickListener { itemClick(jobDetail) }
