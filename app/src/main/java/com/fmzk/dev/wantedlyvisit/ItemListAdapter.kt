@@ -11,11 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import kotterknife.bindView
-import android.graphics.Color
-import com.by_syk.lib.texttag.TextTag
 
 
-class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (String) -> Unit) :
+class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemClick: (JobDetail) -> Unit) :
         RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,30 +29,17 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
         return this.items.count()
     }
 
-    class ViewHolder(view: View, val itemClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (JobDetail) -> Unit) : RecyclerView.ViewHolder(view) {
         private val title: TextView by bindView(R.id.title)
-        private val company: TextView by bindView(R.id.company)
-        private val companyUrl: TextView by bindView(R.id.company_url)
         private val lookingFor: TextView by bindView(R.id.looking_for)
         private val description: TextView by bindView(R.id.description)
         private val jobImage: ImageView by bindView(R.id.job_image)
-        private val companyIcon: ImageView by bindView(R.id.company_icon)
 
         fun setUp(jobDetail: JobDetail) {
             this.title.text = jobDetail.title
-            this.company.text = jobDetail.company.name
-            this.companyUrl.text = jobDetail.company.url
             this.lookingFor.text = jobDetail.looking_for
             this.description.text = jobDetail.description
-            this.lookingFor.text = TextTag.Builder()
-                    .text("")
-                    .tag(" " + jobDetail.looking_for + " ")
-                    .color(Color.WHITE)
-                    .bgColor(Color.rgb(25, 173, 194))
-                    .sizeRatio(1.0f)
-                    .pos(TextTag.POS_START)
-                    .build()
-                    .render()
+            this.lookingFor.text = jobDetail.looking_for
 
             if (jobDetail.image != null) {
                 Glide.with(jobImage.context)
@@ -63,14 +48,7 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
                         .into(jobImage)
             }
 
-            if (jobDetail.company.avatar != null) {
-                Glide.with(companyIcon.context)
-                        .load(jobDetail.company.avatar.original)
-                        .error(android.R.drawable.ic_delete)
-                        .into(companyIcon)
-            }
-
-            this.itemView.setOnClickListener { itemClick(jobDetail.title) }
+            this.itemView.setOnClickListener { itemClick(jobDetail) }
         }
     }
 }

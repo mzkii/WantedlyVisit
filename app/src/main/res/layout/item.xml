@@ -9,8 +9,13 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="280dp"
         android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:elevation="6dp">
 
         <RelativeLayout
@@ -28,23 +33,12 @@
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_alignTop="@+id/looking_for"
+                android:layout_marginTop="10dp"
                 android:alpha=".45"
                 android:background="#000" />
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/company_icon"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
-                android:background="#FFF"
-                android:scaleType="fitCenter"
-                app:riv_border_color="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/title"
@@ -53,13 +47,15 @@
                 android:layout_above="@+id/description"
                 android:layout_alignParentStart="true"
                 android:gravity="center_vertical"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
+                android:lineSpacingExtra="4sp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="6dp"
                 android:singleLine="false"
                 android:text="〔マッハバイト〕リブセンスの主力メディアをひっぱるデザイナー募集"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -67,51 +63,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:ellipsize="none"
+                android:layout_alignParentStart="true"
+                android:ellipsize="middle"
                 android:enabled="false"
                 android:gravity="top|left"
-                android:maxLines="4"
+                android:lineSpacingExtra="2sp"
+                android:maxLines="2"
                 android:paddingBottom="10dp"
-                android:paddingLeft="4dp"
-                android:paddingTop="4dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
                 android:text="クリエイティブ力でメディアを成長させるデザイナーを募集します。もっと満足度の高いUI設計をしたい、という強い思いから募集を開始しました。運営サービスの社会的意義を理解した上で、クリエイティブ力による課題解決を行っていただきます！■具体的な業務イメージ"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#ffffff"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/company_url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/company_icon"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/company_icon"
-                android:gravity="left"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:text="http://recruit.livesense.co.jp/"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/company_url"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/company_icon"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:text="株式会社リブセンス"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -120,12 +85,18 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/title"
                 android:layout_alignStart="@+id/view"
+                android:background="@drawable/frame_style"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
                 android:text="Android Engineer"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
 </LinearLayout>

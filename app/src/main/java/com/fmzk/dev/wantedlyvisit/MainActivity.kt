@@ -13,6 +13,9 @@ import kotlin.collections.ArrayList
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import com.google.gson.Gson
+
+
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -49,6 +52,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     override fun onLoadMore() {
                         currentPage++
+                        if( currentPage > totalPages){
+                            recyclerView.loadMoreComplete()
+                            adapter?.notifyDataSetChanged()
+                            return
+                        }
                         client.getJobs(keyword, currentPage)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -62,10 +70,12 @@ class MainActivity : AppCompatActivity() {
                 }
         )
         listData = ArrayList()
-        adapter = ItemListAdapter(listData!!) { itemName ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("itemName", itemName)
-            this.startActivity(intent)
+        adapter = ItemListAdapter(listData!!) { item ->
+            val intent = Intent(applicationContext, DetailActivity::class.java)
+            val data = JobDetailHolder(item)
+            val json = Gson().toJson(data)
+            intent.putExtra("json_data", json)
+            startActivity(intent)
         }
         recyclerView.adapter = adapter
         recyclerView.refresh()
