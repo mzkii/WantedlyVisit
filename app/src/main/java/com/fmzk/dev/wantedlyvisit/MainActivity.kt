@@ -3,6 +3,7 @@ package com.fmzk.dev.wantedlyvisit
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.util.Log
 import com.jcodecraeer.xrecyclerview.ProgressStyle
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,26 +14,29 @@ import kotlin.collections.ArrayList
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.RelativeLayout
 import com.google.gson.Gson
-
+import timber.log.Timber
 
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var searchView: SearchView
+    private val recyclerView: XRecyclerView by bindView(R.id.recycler_view)
+    private val activityMain: RelativeLayout by bindView(R.id.activity_main)
     private val client = WantedlyVisitClient()
     private var adapter: ItemListAdapter? = null
-    private val recyclerView: XRecyclerView by bindView(R.id.recycler_view)
+    private var listData: ArrayList<JobDetail>? = null
     private var currentPage = 1
     private var totalPages = 1
     private var keyword = ""
-    private var listData: ArrayList<JobDetail>? = null
-    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "シゴトを探す"
+
         recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader)
         recyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate)
         recyclerView.setLoadingListener(
@@ -42,17 +46,21 @@ class MainActivity : AppCompatActivity() {
                         client.getJobs(keyword, currentPage)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe {
-                                    listData?.clear()
-                                    totalPages = it.metadata.TotalPages
-                                    listData?.addAll(it.data)
-                                    recyclerView.refreshComplete()
-                                    adapter?.notifyDataSetChanged()
-                                }
+                                .subscribe(
+                                        {
+                                            listData?.clear()
+                                            totalPages = it.metadata.TotalPages
+                                            listData?.addAll(it.data)
+                                            recyclerView.refreshComplete()
+                                            adapter?.notifyDataSetChanged()
+                                        },
+                                        { Timber.e(it, "getJobs");errorSnackbar() }
+                                )
                     }
+
                     override fun onLoadMore() {
                         currentPage++
-                        if( currentPage > totalPages){
+                        if (currentPage > totalPages) {
                             recyclerView.loadMoreComplete()
                             adapter?.notifyDataSetChanged()
                             return
@@ -60,12 +68,17 @@ class MainActivity : AppCompatActivity() {
                         client.getJobs(keyword, currentPage)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe {
-                                    totalPages = it.metadata.TotalPages
-                                    listData?.addAll(it.data)
-                                    recyclerView.loadMoreComplete()
-                                    adapter?.notifyDataSetChanged()
-                                }
+                                .subscribe(
+                                        {
+                                            totalPages = it.metadata.TotalPages
+                                            listData?.addAll(it.data)
+                                            recyclerView.loadMoreComplete()
+                                            adapter?.notifyDataSetChanged()
+                                        },
+                                        {
+                                            Timber.e(it, "getJobs")
+                                            errorSnackbar()
+                                        })
                     }
                 }
         )
@@ -81,6 +94,19 @@ class MainActivity : AppCompatActivity() {
         recyclerView.refresh()
     }
 
+
+
+    fun errorSnackbar() {
+        recyclerView.refreshComplete()
+        adapter?.notifyDataSetChanged()
+        Snackbar.make(activityMain, "通信に失敗しました", Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show()
+    }
+
+
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.activity_search, menu)
@@ -95,27 +121,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
         menuItem.expandActionView()
-        searchView = menuItem.actionView as SearchView
 
+        searchView = menuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
                 return onQueryTextChange(query)
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.d("onQueryTextChange", "newText = " + newText)
                 keyword = newText
-                currentPage = 1
                 recyclerView.refreshComplete()
-                client.getJobs(keyword, currentPage)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            listData?.clear()
-                            totalPages = it.metadata.TotalPages
-                            listData?.addAll(it.data)
-                            adapter?.notifyDataSetChanged()
-                        }
+                recyclerView.refresh()
                 return false
             }
         })
