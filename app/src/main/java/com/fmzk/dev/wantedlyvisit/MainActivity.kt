@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribe(
                         {
                             if(isClearList) listData?.clear()
-                            totalPages = it.metadata.TotalPages
+                            totalPages = it.metaData.TotalPages
                             listData?.addAll(it.data)
                             recyclerView.refreshComplete()
                             adapter?.notifyDataSetChanged()

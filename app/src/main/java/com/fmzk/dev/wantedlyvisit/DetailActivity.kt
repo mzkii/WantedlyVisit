@@ -43,17 +43,17 @@ class DetailActivity : AppCompatActivity() {
                 intent.getStringExtra("json_data"),
                 JobDetailHolder::class.java!!)
 
-        pageView.text = data.jobDetail.page_view + " " + "views"
+        pageView.text = data.jobDetail.pageView + " " + "views"
         founder.text = data.jobDetail.company.founder
-        foundedOn.text = data.jobDetail.company.founded_on
-        payrollNumber.text = data.jobDetail.company.payroll_number
-        address.text = data.jobDetail.company.address_prefix + " " +
-                data.jobDetail.company.address_suffix
+        foundedOn.text = data.jobDetail.company.foundedOn
+        payrollNumber.text = data.jobDetail.company.payrollNumber
+        address.text = data.jobDetail.company.addressPrefix + " " +
+                data.jobDetail.company.addressSuffix
         url.text = data.jobDetail.company.url
 
         author.text = data.jobDetail.title
         description.text = data.jobDetail.description
-        lookingFor.text = data.jobDetail.looking_for
+        lookingFor.text = data.jobDetail.lookingFor
         company.text = data.jobDetail.company.name
 
         if (data.jobDetail.image != null) {
