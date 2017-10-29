@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.util.Log
 import com.jcodecraeer.xrecyclerview.ProgressStyle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -113,6 +112,7 @@ class MainActivity : AppCompatActivity() {
         menuItem.expandActionView()
 
         searchView = menuItem.actionView as SearchView
+        searchView.maxWidth = 10000
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
