@@ -21,7 +21,6 @@ import timber.log.Timber
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-
     private lateinit var searchView: SearchView
     private val recyclerView: XRecyclerView by bindView(R.id.recycler_view)
     private val activityMain: RelativeLayout by bindView(R.id.activity_main)
@@ -42,43 +41,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setLoadingListener(
                 object : XRecyclerView.LoadingListener {
                     override fun onRefresh() {
-                        currentPage = 1
-                        client.getJobs(keyword, currentPage)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(
-                                        {
-                                            listData?.clear()
-                                            totalPages = it.metadata.TotalPages
-                                            listData?.addAll(it.data)
-                                            recyclerView.refreshComplete()
-                                            adapter?.notifyDataSetChanged()
-                                        },
-                                        { Timber.e(it, "getJobs");errorSnackbar() }
-                                )
+                        getJobs(isClearList = true)
                     }
-
                     override fun onLoadMore() {
-                        currentPage++
-                        if (currentPage > totalPages) {
-                            recyclerView.loadMoreComplete()
-                            adapter?.notifyDataSetChanged()
-                            return
-                        }
-                        client.getJobs(keyword, currentPage)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(
-                                        {
-                                            totalPages = it.metadata.TotalPages
-                                            listData?.addAll(it.data)
-                                            recyclerView.loadMoreComplete()
-                                            adapter?.notifyDataSetChanged()
-                                        },
-                                        {
-                                            Timber.e(it, "getJobs")
-                                            errorSnackbar()
-                                        })
+                        getJobs(isClearList = false)
                     }
                 }
         )
@@ -94,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.refresh()
     }
 
-
-
     fun errorSnackbar() {
         recyclerView.refreshComplete()
         adapter?.notifyDataSetChanged()
@@ -104,8 +68,34 @@ class MainActivity : AppCompatActivity() {
                 .show()
     }
 
-
-
+    fun getJobs(isClearList: Boolean){
+        when (isClearList) {
+            true -> {
+                currentPage = 1
+            }
+            false -> {
+                currentPage++
+                if (currentPage > totalPages) {
+                    recyclerView.loadMoreComplete()
+                    adapter?.notifyDataSetChanged()
+                    return
+                }
+            }
+        }
+        client.getJobs(keyword, currentPage)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            if(isClearList) listData?.clear()
+                            totalPages = it.metadata.TotalPages
+                            listData?.addAll(it.data)
+                            recyclerView.refreshComplete()
+                            adapter?.notifyDataSetChanged()
+                        },
+                        { Timber.e(it, "getJobs");errorSnackbar() }
+                )
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
@@ -131,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String): Boolean {
                 keyword = newText
                 recyclerView.refreshComplete()
-                recyclerView.refresh()
+                getJobs(isClearList = true)
                 return false
             }
         })
