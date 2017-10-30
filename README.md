@@ -2,6 +2,8 @@
 
 Wantedly VisitAndroid課題
 
+![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
+
 ## できること
 
 選んだオプショナル
