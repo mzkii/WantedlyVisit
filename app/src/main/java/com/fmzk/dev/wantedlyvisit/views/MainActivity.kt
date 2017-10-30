@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onRefresh() {
                         getJobs(isClearList = true)
                     }
+
                     override fun onLoadMore() {
                         getJobs(isClearList = false)
                     }
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
     }
 
-    fun getJobs(isClearList: Boolean){
+    fun getJobs(isClearList: Boolean) {
         when (isClearList) {
             true -> {
                 currentPage = 1
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         {
-                            if(isClearList) listData?.clear()
+                            if (isClearList) listData?.clear()
                             totalPages = it.metaData.TotalPages
                             listData?.addAll(it.data)
                             recyclerView.refreshComplete()
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 return true
             }
+
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 onBackPressed()
                 return false
@@ -121,6 +123,7 @@ class MainActivity : AppCompatActivity() {
                 searchView.clearFocus()
                 return onQueryTextChange(query)
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
                 keyword = newText
                 recyclerView.refreshComplete()
