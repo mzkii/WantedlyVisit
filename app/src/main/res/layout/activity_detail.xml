@@ -4,6 +4,12 @@
         <variable
             name="jobDetail"
             type="com.fmzk.dev.wantedlyvisit.models.JobDetail" />
+        <variable
+            name="companyIconUrl"
+            type="String" />
+        <variable
+            name="imageUrl"
+            type="String" />
     </data>
     <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_content"
@@ -34,7 +40,8 @@
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax" />
+                    app:layout_collapseMode="parallax"
+                    app:imageSrc="@{imageUrl}"/>
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -118,7 +125,8 @@
                                 android:layout_weight="1"
                                 android:background="#FFF"
                                 android:scaleType="fitCenter"
-                                app:riv_border_color="@color/colorAccent" />
+                                app:riv_border_color="@color/colorAccent"
+                                app:imageSrc="@{companyIconUrl}"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"

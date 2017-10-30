@@ -17,8 +17,6 @@ import com.sackcentury.shinebuttonlib.ShineButton
 
 class DetailActivity : AppCompatActivity() {
     lateinit private var binding: ActivityDetailBinding
-    private val backdrop: ImageView by bindView(R.id.backdrop)
-    private val companyIcon: ImageView by bindView(R.id.company_icon)
     private val bookmark: Button by bindView(R.id.button_bookmark)
     private val candidate: Button by bindView(R.id.button_candidate)
     private val share: FloatingActionButton by bindView(R.id.fab_share)
@@ -32,19 +30,9 @@ class DetailActivity : AppCompatActivity() {
                 JobDetail::class.java!!)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         binding.jobDetail = jobDetail
+        binding.imageUrl = jobDetail.image.i_320_131_x2
+        binding.companyIconUrl = jobDetail.company.avatar.original
 
-        if (jobDetail.image != null) {
-            Glide.with(backdrop.context)
-                    .load(jobDetail.image.i_320_131_x2)
-                    .error(android.R.drawable.ic_delete)
-                    .into(backdrop)
-        }
-        if (jobDetail.company.avatar != null) {
-            Glide.with(companyIcon.context)
-                    .load(jobDetail.company.avatar.original)
-                    .error(android.R.drawable.ic_delete)
-                    .into(companyIcon)
-        }
         bookmark.setOnClickListener { view ->
             Snackbar.make(view, "「あとで見る」に登録されました", Snackbar.LENGTH_LONG)
                     .setAction("Action", null)
