@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.fmzk.dev.wantedlyvisit.models.JobDetail
 import kotterknife.bindView
 
 

@@ -1,4 +1,4 @@
-package com.fmzk.dev.wantedlyvisit
+package com.fmzk.dev.wantedlyvisit.models
 
 import io.reactivex.Observable
 import retrofit2.Retrofit
