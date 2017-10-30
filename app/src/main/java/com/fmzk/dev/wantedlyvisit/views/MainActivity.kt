@@ -15,7 +15,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.RelativeLayout
 import com.fmzk.dev.wantedlyvisit.ItemListAdapter
-import com.fmzk.dev.wantedlyvisit.JobDetailHolder
 import com.fmzk.dev.wantedlyvisit.R
 import com.fmzk.dev.wantedlyvisit.models.WantedlyVisitClient
 import com.fmzk.dev.wantedlyvisit.models.JobDetail
@@ -55,8 +54,7 @@ class MainActivity : AppCompatActivity() {
         listData = ArrayList()
         adapter = ItemListAdapter(listData!!) { item ->
             val intent = Intent(applicationContext, DetailActivity::class.java)
-            val data = JobDetailHolder(item)
-            val json = Gson().toJson(data)
+            val json = Gson().toJson(item)
             intent.putExtra("json_data", json)
             startActivity(intent)
         }

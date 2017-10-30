@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.fmzk.dev.wantedlyvisit.JobDetailHolder
 import com.fmzk.dev.wantedlyvisit.R
 import com.fmzk.dev.wantedlyvisit.databinding.ActivityDetailBinding
+import com.fmzk.dev.wantedlyvisit.models.JobDetail
 import kotterknife.bindView
 import com.google.gson.Gson
 import com.sackcentury.shinebuttonlib.ShineButton
@@ -27,21 +27,21 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        val data = Gson().fromJson<JobDetailHolder>(
+        val jobDetail = Gson().fromJson<JobDetail>(
                 intent.getStringExtra("json_data"),
-                JobDetailHolder::class.java!!)
+                JobDetail::class.java!!)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
-        binding.jobDetail = data.jobDetail
+        binding.jobDetail = jobDetail
 
-        if (data.jobDetail.image != null) {
+        if (jobDetail.image != null) {
             Glide.with(backdrop.context)
-                    .load(data.jobDetail.image.i_320_131_x2)
+                    .load(jobDetail.image.i_320_131_x2)
                     .error(android.R.drawable.ic_delete)
                     .into(backdrop)
         }
-        if (data.jobDetail.company.avatar != null) {
+        if (jobDetail.company.avatar != null) {
             Glide.with(companyIcon.context)
-                    .load(data.jobDetail.company.avatar.original)
+                    .load(jobDetail.company.avatar.original)
                     .error(android.R.drawable.ic_delete)
                     .into(companyIcon)
         }
