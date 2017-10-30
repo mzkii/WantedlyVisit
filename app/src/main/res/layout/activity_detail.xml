@@ -3,7 +3,7 @@
     <data>
         <variable
             name="jobDetail"
-            type="com.fmzk.dev.wantedlyvisit.JobDetail" />
+            type="com.fmzk.dev.wantedlyvisit.models.JobDetail" />
     </data>
     <android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/main_content"

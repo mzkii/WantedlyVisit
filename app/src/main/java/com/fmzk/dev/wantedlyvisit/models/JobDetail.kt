@@ -1,4 +1,4 @@
-package com.fmzk.dev.wantedlyvisit
+package com.fmzk.dev.wantedlyvisit.models
 
 import com.google.gson.annotations.SerializedName
 

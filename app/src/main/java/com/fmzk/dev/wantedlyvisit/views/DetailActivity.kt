@@ -1,4 +1,4 @@
-package com.fmzk.dev.wantedlyvisit
+package com.fmzk.dev.wantedlyvisit.views
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.fmzk.dev.wantedlyvisit.JobDetailHolder
+import com.fmzk.dev.wantedlyvisit.R
 import com.fmzk.dev.wantedlyvisit.databinding.ActivityDetailBinding
 import kotterknife.bindView
 import com.google.gson.Gson
