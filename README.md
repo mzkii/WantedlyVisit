@@ -13,9 +13,6 @@ Wantedly VisitAndroid課題
 * 募集一覧をタップした後の詳細画面
 * ユーザーが募集の詳細画面を開きたくなる工夫
 
-## デモ
-![demo](https://github.com/MizukiFurusawa/wantedly-visit/blob/readme/images/demo.gif)
-
 ## 工夫した点
 
 * 募集の見せ方（デザイン）
@@ -24,3 +21,6 @@ Wantedly VisitAndroid課題
   * 詳細画面には、カテゴリごとにCardViewに表示して、
     画面に立体感を出すようにした。
   * ボタン類は画面右端or画面下にまとめて設置した。
+
+## デモ
+![demo](https://github.com/MizukiFurusawa/wantedly-visit/blob/readme/images/demo.gif)
