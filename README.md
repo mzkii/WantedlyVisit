@@ -2,7 +2,7 @@
 
 Wantedly VisitAndroid課題
 
-![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
+![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/readme/images/screenshot.png)
 
 ## できること
 
@@ -14,7 +14,7 @@ Wantedly VisitAndroid課題
 * ユーザーが募集の詳細画面を開きたくなる工夫
 
 ## デモ
-![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
+![demo](https://github.com/MizukiFurusawa/wantedly-visit/blob/readme/images/demo.gif)
 
 ## 工夫した点
 
