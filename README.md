@@ -4,7 +4,6 @@ Wantedly VisitAndroid課題
 
 ![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
 
-
 ## できること
 
 選んだオプショナル
@@ -13,6 +12,9 @@ Wantedly VisitAndroid課題
 * インクリメンタルサーチ
 * 募集一覧をタップした後の詳細画面
 * ユーザーが募集の詳細画面を開きたくなる工夫
+
+## デモ
+![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
 
 ## 工夫した点
 
