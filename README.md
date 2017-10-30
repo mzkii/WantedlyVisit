@@ -4,11 +4,11 @@ Wantedly VisitAndroid課題
 
 ![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/0fc50ec37280f5b1452c7f2580eddf4cbdd97475/images/screenshot.png)
 
+
 ## できること
 
 選んだオプショナル
 
-* 募集一覧を表示する
 * 募集の見せ方（デザイン）
 * インクリメンタルサーチ
 * 募集一覧をタップした後の詳細画面
