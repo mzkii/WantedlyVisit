@@ -82,7 +82,7 @@
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
                             android:paddingTop="4dp"
-                            android:text="Android"
+                            android:text="@{jobDetail.lookingFor}"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/colorPrimary"
                             android:textSize="12sp"
