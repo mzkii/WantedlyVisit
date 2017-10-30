@@ -4,6 +4,15 @@ Wantedly VisitAndroid課題
 
 ![screenshot](https://github.com/MizukiFurusawa/wantedly-visit/blob/readme/images/screenshot.png)
 
+## 技術概要
+* 言語
+	* kotlin
+* Network
+	* Retrofit
+	* OKHttp
+* ReactiveProgramming
+	* RxJava
+
 ## できること
 
 選んだオプショナル
