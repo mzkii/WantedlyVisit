@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.fmzk.dev.wantedlyvisit.models.JobDetail
 import kotterknife.bindView
 
 
@@ -37,9 +38,9 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
 
         fun setUp(jobDetail: JobDetail) {
             this.title.text = jobDetail.title
-            this.lookingFor.text = jobDetail.looking_for
+            this.lookingFor.text = jobDetail.lookingFor
             this.description.text = jobDetail.description
-            this.lookingFor.text = jobDetail.looking_for
+            this.lookingFor.text = jobDetail.lookingFor
 
             if (jobDetail.image != null) {
                 Glide.with(jobImage.context)

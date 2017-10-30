@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
@@ -42,6 +45,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
     compile 'com.sackcentury:shinebutton:0.1.9'
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    kapt 'com.android.databinding:compiler:2.3.1'
 }
 
 repositories {
@@ -54,3 +59,7 @@ repositories {
     }
 }
 apply plugin: 'kotlin-android-extensions'
+
+kapt {
+    generateStubs = true
+}
