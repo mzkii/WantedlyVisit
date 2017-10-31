@@ -23,8 +23,10 @@ class DetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         binding!!.detailActivity = this
         binding.jobDetail = jobDetail
-        binding.imageUrl = jobDetail.image.i_320_131_x2
-        binding.companyIconUrl = jobDetail.company.avatar.original
+        binding.imageUrl =
+                if (jobDetail.image != null) jobDetail.image.i_304_124_x2 else ""
+        binding.companyIconUrl =
+                if (jobDetail.company.avatar != null) jobDetail.company.avatar.original else ""
         binding.liked.setOnClickListener { view ->
             showMessage(view, "「応援する」が押されました")
         }
