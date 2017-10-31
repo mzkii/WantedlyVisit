@@ -44,8 +44,8 @@ class ItemListAdapter(private val items: ArrayList<JobDetail>, private val itemC
 
             if (jobDetail.image != null) {
                 Glide.with(jobImage.context)
-                        .load(jobDetail.image.i_304_124_x2)
-                        .error(android.R.drawable.ic_delete)
+                        .load(jobDetail.image.i_320_131_x2)
+                        .error(R.drawable.image_placeholder)
                         .into(jobImage)
             }
 
